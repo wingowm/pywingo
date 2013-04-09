@@ -7,10 +7,13 @@ would use `wingo-cmd` in a shell script by calling `gribble`.
 Installation
 ============
 pywingo is in the Python Package Index (PyPI):
-    http://pypi.python.org/pypi/pywingo/. 
+http://pypi.python.org/pypi/pywingo
 
 You can install it with:
-    sudo pip-2.7 install pywingo
+
+```bash
+sudo pip-2.7 install pywingo
+```
 
 Example
 =======

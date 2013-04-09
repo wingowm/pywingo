@@ -4,8 +4,8 @@ docs:
 		doc/* \
 		Geils:~/www/burntsushi.net/public_html/doc/nflgame/
 
-pypi: docs
-	sudo python2 setup.py register sdist upload
+pypi:
+	python2 setup.py register sdist upload
 
 pypi-meta:
 	python2 setup.py register
