@@ -2,7 +2,7 @@
 # Maintainer: Andrew Gallant
 pkgname=pywingo-git
 _gitname=pywingo
-pkgver=0.0.0
+pkgver=4be03c8
 pkgrel=1
 pkgdesc="Python library that communicates with wingo."
 arch=('any')
@@ -21,10 +21,10 @@ pkgver() {
 }
 
 build() {
-    return 1
+    return 0
 }
 
-package(){
+package() {
     cd $_gitname
     python2 ./setup.py install --root=$pkgdir || return 1
 }
