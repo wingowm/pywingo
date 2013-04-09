@@ -1,6 +1,6 @@
 Introduction
 ============
-A Python 2.7 library that communicates, within an active X session, with
+A Python 2.x library that communicates, within an active X session, with
 wingo via sockets. Pywingo allows for easy scripting similar to how a person
 would use `wingo-cmd` in a shell script by calling `gribble`.
 
@@ -18,5 +18,6 @@ Example
 
     import pywingo
 
-    x = pywingo.wingo()
+    x = pywingo.Wingo()
     x.gribble('GetWorkspace')
+
