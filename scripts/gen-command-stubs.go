@@ -45,13 +45,6 @@ func (c cmd) String() string {
 		fmt.Fprintf(buf, strings.Repeat("    ", indent) + format, v...)
 	}
 
-	args := make([]string, len(c.ArgNames))
-	for i := 0; i < len(c.ArgNames); i++ {
-		args[i] = fmt.Sprintf("(%s :: %s)",
-			c.ArgNames[i], strings.Join(c.ArgTypes[i], " | "))
-	}
-	// out("%s %s", c.Name, strings.Join(args, " ")) 
-
 	out(1, "def %s(%s):\n", c.Name,
 		strings.Join(append([]string{"self"}, c.ArgNames...), ", "))
 	out(2, "'''\n%s\n        '''\n", c.Help)
