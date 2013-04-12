@@ -18,7 +18,7 @@ setup(
     author_email='drew.liszewski@gmail.com',
     maintainer='Andrew Gallant',
     maintainer_email='andrew@burntsushi.net',
-    version='0.1',
+    version='0.0.2',
     license='WTFPL',
     description='Provide access to wingo via sockets',
     long_description=longdesc,
