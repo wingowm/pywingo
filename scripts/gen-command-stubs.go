@@ -21,9 +21,9 @@ var (
 func main() {
 	cmds := allCommands()
 
-	fmt.Println("class _wingo(object):")
+	fmt.Println("class WingoCommands(object):")
 	fmt.Println("    def __init__(self):")
-	fmt.Println("        assert False, 'cannot instantiate _wingo directly'")
+	fmt.Println("        assert False, 'cannot create WingoCommands directly'")
 	fmt.Println("")
 
 	for _, c := range cmds {

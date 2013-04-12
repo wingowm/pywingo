@@ -2,7 +2,7 @@ import os
 import os.path
 import socket
 
-from pywingo.commands import _wingo
+from pywingo.commands import WingoCommands
 
 _bool_cmds = ['True', 'False', 'Not', 'And', 'Or']
 
@@ -13,7 +13,7 @@ class WingoError(Exception):
     def __str__(self):
         return self.message
 
-class Wingo(_wingo):
+class Wingo(WingoCommands):
     def __init__(self):
 
         # Open socket

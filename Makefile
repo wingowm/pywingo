@@ -2,9 +2,9 @@ docs:
 	scripts/generate-docs
 	rsync -rh --inplace \
 		doc/* \
-		Geils:~/www/burntsushi.net/public_html/doc/nflgame/
+		Geils:~/www/burntsushi.net/public_html/doc/pywingo/
 
-pypi:
+pypi: docs
 	python2 setup.py register sdist upload
 
 pypi-meta:

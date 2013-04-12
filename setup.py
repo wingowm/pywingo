@@ -6,11 +6,10 @@ longdesc = \
 wingo via sockets. Pywingo allows for easy scripting similar to how a person
 would use `wingo-cmd` in a shell script by calling `gribble`.'''
 
-# NOTE: Is this necessary?
-#try:
-#    docfiles = map(lambda s: 'doc/%s' % s, list(os.walk('doc'))[0][2])
-#except IndexError:
-#    docfiles = []
+try:
+    docfiles = map(lambda s: 'doc/%s' % s, list(os.walk('doc'))[0][2])
+except IndexError:
+    docfiles = []
 
 setup(
     name='pywingo',
@@ -18,7 +17,7 @@ setup(
     author_email='drew.liszewski@gmail.com',
     maintainer='Andrew Gallant',
     maintainer_email='andrew@burntsushi.net',
-    version='0.0.2',
+    version='0.0.3',
     license='WTFPL',
     description='Provide access to wingo via sockets',
     long_description=longdesc,
@@ -37,4 +36,6 @@ setup(
     platforms='Linux',
     packages=['pywingo'],
     package_dir={'pywingo': 'src/pywingo'},
+    data_files=[('share/doc/pywingo', ['README', 'COPYING']),
+                ('share/doc/pywingo/doc', docfiles)],
 )

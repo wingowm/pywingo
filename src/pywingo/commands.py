@@ -1,6 +1,6 @@
-class _wingo(object):
+class WingoCommands(object):
     def __init__(self):
-        assert False, 'cannot instantiate _wingo directly'
+        assert False, 'cannot create WingoCommands directly'
 
     def AddWorkspace(self, Name):
         '''
@@ -303,7 +303,7 @@ Make sure "audio_play_cmd" is set to a program that can play wav files.
 
     def False(self):
         '''
-Always returns 1.
+Always returns 0.
         '''
 
         arg_str = self._gribble_arg_str([])
