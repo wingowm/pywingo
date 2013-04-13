@@ -15,28 +15,27 @@ class WingoError(Exception):
 
 class Wingo(WingoCommands):
     def __init__(self):
-
-        # Open socket
-        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        self.__sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         f = os.path.join(os.getenv('XDG_RUNTIME_DIR'), 'wingo',
                          os.getenv('DISPLAY'))
-        self.sock.connect(f)
+        self.__sock.connect(f)
+        self.__buf = ''
 
     def __del__(self):
-        # Close socket
-        self.sock.close()
+        self.__sock.close()
 
-    def __recv(self, sock):
-        data = ''
-        while chr(0) not in data:
-            data += sock.recv(4096)
-        if chr(0) in data:
-            data = data[0:data.index(chr(0))]
-        return data
+    def __recv(self):
+        while chr(0) not in self.__buf:
+            self.__buf += self.__sock.recv(4096)
+
+        sentinel = self.__buf.index(chr(0))
+        payload = self.__buf[0:sentinel][:]
+        self.__buf = self.__buf[sentinel+1:]
+        return payload
 
     def gribble(self, cmd):
-        self.sock.send("%s%s" % (cmd, chr(0)))
-        return self.__recv(self.sock)
+        self.__sock.send("%s%s" % (cmd, chr(0)))
+        return self.__recv()
 
     def _assert_arg_type(self, name, val, types):
         for t in types:
@@ -62,6 +61,13 @@ class Wingo(WingoCommands):
         if cmd_name in _bool_cmds or cmd_name.startswith('Match'):
             return bool(int(s))
 
+        if 'List' in cmd_name or '\n' in s:
+            trimmed = s.strip()
+            if len(trimmed) == 0:
+                return []
+            return map(lambda item: self._primitive_from_str(cmd_name, item),
+                       trimmed.split('\n'))
+
         try:
             return int(s)
         except ValueError:
@@ -70,11 +76,22 @@ class Wingo(WingoCommands):
             except ValueError:
                 if s.startswith('ERROR:'):
                     raise WingoError(s)
-                elif '\n' in s:
-                    return map(lambda item: self._from_str(cmd_name, item),
-                               s.strip().split('\n'))
                 else:
                     return s
+
+        assert False, 'bug'
+
+    def _primitive_from_str(self, cmd_name, s):
+        if cmd_name in _bool_cmds or cmd_name.startswith('Match'):
+            return bool(int(s))
+
+        try:
+            return int(s)
+        except ValueError:
+            try:
+                return float(s)
+            except ValueError:
+                return s
 
         assert False, 'bug'
 
