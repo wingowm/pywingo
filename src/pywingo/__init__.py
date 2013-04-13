@@ -34,6 +34,18 @@ class _wingoUtil(WingoCommands):
     def __init__(self):
         assert False, 'cannot create WingoCommands directly'
 
+    def GetAllNormalClients(self):
+        '''
+        Exactly the same as GetAllClients, except only clients with
+        type "normal" are returned. (i.e., excludes "desktop" and
+        "dock" clients.)
+        '''
+        cids = []
+        for cid in self.GetAllClients():
+            if self.GetClientType(cid) == 'normal':
+                cids.append(cid)
+        return cids
+
     def IsEmpty(self, Workspace):
         '''
         Returns true if the given Workspace has no clients. (Including
