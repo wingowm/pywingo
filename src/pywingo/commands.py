@@ -594,6 +594,25 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
         val = self.gribble('GetLayout %s' % arg_str)
         return self._from_str('GetLayout', val)
 
+    def GetNumHeads(self):
+        '''
+Returns the number of active Heads.
+        '''
+
+        arg_str = self._gribble_arg_str([])
+        val = self.gribble('GetNumHeads %s' % arg_str)
+        return self._from_str('GetNumHeads', val)
+
+    def GetNumHeadsConnected(self):
+        '''
+Returns the number of Heads connected. This number may be greater
+than the number returned by GetNumHeads.
+        '''
+
+        arg_str = self._gribble_arg_str([])
+        val = self.gribble('GetNumHeadsConnected %s' % arg_str)
+        return self._from_str('GetNumHeadsConnected', val)
+
     def GetWorkspace(self):
         '''
 Returns the name of the current workspace.
