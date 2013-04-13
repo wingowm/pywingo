@@ -405,6 +405,16 @@ Returns the id of the currently active window. If there is no active window,
         val = self.gribble('GetActive %s' % arg_str)
         return self._from_str('GetActive', val)
 
+    def GetAllClients(self):
+        '''
+Returns a list of all client ids separated by new lines. Clients are listed
+in the order in which they were managed, starting with the oldest client.
+        '''
+
+        arg_str = self._gribble_arg_str([])
+        val = self.gribble('GetAllClients %s' % arg_str)
+        return self._from_str('GetAllClients', val)
+
     def GetClientHeight(self, Client):
         '''
 Returns the height of the window specified by Client, including
