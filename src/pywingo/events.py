@@ -65,6 +65,11 @@ def _new_ChangedClientName(j):
     assert j['EventName'] == 'ChangedClientName'
     return ChangedClientName(j['Id'])
 
+ChangedActiveClient = namedtuple('ChangedActiveClient', ['Id'])
+def _new_ChangedActiveClient(j):
+    assert j['EventName'] == 'ChangedActiveClient'
+    return ChangedActiveClient(j['Id'])
+
 ChangedLayout = namedtuple('ChangedLayout', ['Workspace'])
 def _new_ChangedLayout(j):
     assert j['EventName'] == 'ChangedLayout'
