@@ -2,6 +2,7 @@ import json
 import os
 import os.path
 import socket
+import sys
 import time
 
 from pywingo.commands import WingoCommands
@@ -175,7 +176,13 @@ class Wingo(_wingoUtil):
                 evJson = self.__recv_event()
                 j = json.loads(evJson)
                 ev_name = str(j['EventName'])
-                ev = events.__dict__['_new_%s' % ev_name](j)
+                key = '_new_%s' % ev_name
+                if key not in events.__dict__:
+                    print >> sys.stderr, \
+                        'Event "%s" is not defined in pywingo. ' \
+                        'Time to update!' % ev_name
+                    continue
+                ev = events.__dict__[key](j)
 
                 for cb in self.__callbacks.get(ev_name, []):
                     cb(ev)
@@ -185,14 +192,22 @@ class Wingo(_wingoUtil):
             time.sleep(1)
             self.loop(restart)
 
-    def bind(self, event_name, f):
+    def bind(self, event_name, f=None):
         '''
         Binds an event named `event_name` to a callback function `f`.
         `f` should be a function that takes a single argument `event`,
         which will correspond to a namedtuple of the event with any
         relevant data as properties.
+
+        If `f` is None, then a partially applied function is returned.
+        (For decorator support.)
         '''
-        if event_name not in self.__callbacks:
-            self.__callbacks[event_name] = []
-        self.__callbacks[event_name].append(f)
+        def doit(fun):
+            if event_name not in self.__callbacks:
+                self.__callbacks[event_name] = []
+            self.__callbacks[event_name].append(fun)
+
+        if f is None:
+            return doit
+        doit(f)
 
