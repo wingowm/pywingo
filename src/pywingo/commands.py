@@ -35,7 +35,8 @@ Workspace.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -50,7 +51,8 @@ workspace specified by Workspace.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -65,7 +67,8 @@ by Workspace.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -77,7 +80,8 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
         '''
 Allows one fewer master window to fit into the master split.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -89,7 +93,8 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
         '''
 Allows one more master window to fit into the master split.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -103,7 +108,8 @@ Moves focus to the next client in the layout.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -117,7 +123,8 @@ Moves focus to the next client in the layout.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -127,12 +134,13 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
 
     def AutoResizeMaster(self, Workspace, Amount):
         '''
-Increases or decreases the size of the master split by Amount in the layout on 
+Increases or decreases the size of the master split by Amount in the layout on
 the workspace specified by Workspace.
 
 Amount should be a ratio between 0.0 and 1.0.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
         self._assert_arg_type('Amount', Amount, [float])
@@ -143,12 +151,13 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
 
     def AutoResizeWindow(self, Workspace, Amount):
         '''
-Increases or decreases the size of the current window by Amount in the layout 
+Increases or decreases the size of the current window by Amount in the layout
 on the workspace specified by Workspace.
 
 Amount should be a ratio between 0.0 and 1.0.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
         self._assert_arg_type('Amount', Amount, [float])
@@ -163,7 +172,8 @@ Switches the current window with the next window in the layout.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -177,7 +187,8 @@ Switches the current window with the previous window in the layout.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -187,12 +198,13 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
 
     def AutoTile(self, Workspace):
         '''
-Initiates automatic tiling on the workspace specified by Workspace. If tiling 
+Initiates automatic tiling on the workspace specified by Workspace. If tiling
 is already active, the layout will be re-placed.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -202,13 +214,14 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
 
     def AutoUntile(self, Workspace):
         '''
-Stops automatic tiling on the workspace specified by Workspace, and restores 
-windows to their position and geometry before being tiled. If tiling is not 
+Stops automatic tiling on the workspace specified by Workspace, and restores
+windows to their position and geometry before being tiled. If tiling is not
 active on the specified workspace, this command has no effect.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -434,7 +447,8 @@ Returns a list of client ids separated by new lines on the workspace specified
 by Workspace. Clients are listed in their focus orderering, from most recently
 focused to least recently focused.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -532,7 +546,7 @@ Client may be the window id or a substring that matches a window name.
 
     def GetHead(self):
         '''
-Returns the index of the current head. Indexing starts at 0. Heads are ordered 
+Returns the index of the current head. Indexing starts at 0. Heads are ordered
 by their physical position: left to right and then top to bottom.
         '''
 
@@ -545,7 +559,7 @@ by their physical position: left to right and then top to bottom.
 Gets the workable height of the head indexed at Head. If the head specified
 is not visible, then 0 is returned.
 
-Indexing starts at 0. Heads are ordered by their physical position: left to 
+Indexing starts at 0. Heads are ordered by their physical position: left to
 right and then top to bottom.
         '''
         self._assert_arg_type('Head', Head, [int])
@@ -559,7 +573,7 @@ right and then top to bottom.
 Gets the workable width of the head indexed at Head. If the head specified
 is not visible, then 0 is returned.
 
-Indexing starts at 0. Heads are ordered by their physical position: left to 
+Indexing starts at 0. Heads are ordered by their physical position: left to
 right and then top to bottom.
         '''
         self._assert_arg_type('Head', Head, [int])
@@ -586,7 +600,8 @@ Returns the name of the currently active (or "default") layout on the workspace
 specified by Workspace. Note that when a workspace is set to a tiling layout,
 it is still possible for clients to be floating.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -626,7 +641,8 @@ Returns the name of the current workspace.
         '''
 Returns the id (the index) of the workspace specified by Workspace.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -658,8 +674,8 @@ multi-head setups, since multiple workspaces can be viewable at one time.
 
     def GetWorkspacePrefix(self, Prefix):
         '''
-Returns the first non-visible workspace starting with Prefix. If the current 
-workspace starts with Prefix, then the first workspace *after* the current 
+Returns the first non-visible workspace starting with Prefix. If the current
+workspace starts with Prefix, then the first workspace *after* the current
 workspace starting with Prefix will be returned.
         '''
         self._assert_arg_type('Prefix', Prefix, [basestring])
@@ -693,7 +709,7 @@ by their physical position: left to right and then top to bottom.
     def HeadFocusWithClient(self, Head, Client):
         '''
 Focuses the head indexed at Head, and move the Client specified by client to
-that head. Indexing of heads starts at 0. Heads are ordered by their physical 
+that head. Indexing of heads starts at 0. Heads are ordered by their physical
 position: left to right and then top to bottom.
 
 Client may be the window id or a substring that matches a window name.
@@ -724,8 +740,8 @@ another command.
 
     def MatchClientClass(self, Client, Class):
         '''
-Returns 1 if the "class" part of the WM_CLASS property on the window 
-specified by Client contains the substring specified by Class, and otherwise 
+Returns 1 if the "class" part of the WM_CLASS property on the window
+specified by Client contains the substring specified by Class, and otherwise
 returns 0. The search is done case insensitively.
 
 Client may be the window id or a substring that matches a window name.
@@ -739,8 +755,8 @@ Client may be the window id or a substring that matches a window name.
 
     def MatchClientInstance(self, Client, Instance):
         '''
-Returns 1 if the "instance" part of the WM_CLASS property on the window 
-specified by Client contains the substring specified by Instance, and otherwise 
+Returns 1 if the "instance" part of the WM_CLASS property on the window
+specified by Client contains the substring specified by Instance, and otherwise
 returns 0. The search is done case insensitively.
 
 Client may be the window id or a substring that matches a window name.
@@ -754,7 +770,7 @@ Client may be the window id or a substring that matches a window name.
 
     def MatchClientIsTransient(self, Client):
         '''
-Returns 1 if the window specified by Client is a transient window, and 
+Returns 1 if the window specified by Client is a transient window, and
 otherwise returns 0. A transient window usually corresponds to some kind of
 dialog window.
 
@@ -976,7 +992,8 @@ Client may be the window id or a substring that matches a window name.
 Removes the workspace specified by Workspace. Note that a workspace can *only*
 be removed if it is empty (i.e., does not contain any windows).
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -988,7 +1005,8 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
         '''
 Renames the workspace specified by Workspace to the name in NewName.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
 NewName can only be a string.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
@@ -1000,7 +1018,7 @@ NewName can only be a string.
 
     def Resize(self, Client, Width, Height):
         '''
-Resizes the window specified by Client to some width and height specified by 
+Resizes the window specified by Client to some width and height specified by
 Width and Height.
 
 Width and Height may either be pixels (integers) or ratios in the range 0.0 to
@@ -1086,7 +1104,8 @@ no effect.
 
 Note that this command has no effect if the workspace is not visible.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
         self._assert_arg_type('Name', Name, [basestring])
@@ -1146,7 +1165,7 @@ Client may be the window id or a substring that matches a window name.
 
     def ToggleIconify(self, Client):
         '''
-Iconifies (minimizes) or deiconifies (unminimizes) the window specified by 
+Iconifies (minimizes) or deiconifies (unminimizes) the window specified by
 Client.
 
 Client may be the window id or a substring that matches a window name.
@@ -1271,7 +1290,8 @@ Shows the usage information for a particular command specified by CommandName.
         '''
 Sets the current workspace to the one specified by Workspace.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -1288,7 +1308,8 @@ A greedy switch *always* brings the specified workspace to the
 currently focused head. (N.B. Greedy is only different when switching between
 two visible workspaces.)
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -1305,7 +1326,8 @@ A greedy switch *always* brings the specified workspace to the
 currently focused head. (N.B. Greedy is only different when switching between
 two visible workspaces.)
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
 
 Client may be the window id or a substring that matches a window name.
         '''
@@ -1321,10 +1343,11 @@ Client may be the window id or a substring that matches a window name.
 Retrieves the head index of the workspace specified by Workspace. If the
 workspace is not visible, then -1 is returned.
 
-Head indexing starts at 0. Heads are ordered by their physical position: left 
+Head indexing starts at 0. Heads are ordered by their physical position: left
 to right and then top to bottom.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
         '''
         self._assert_arg_type('Workspace', Workspace, [int, basestring])
 
@@ -1336,7 +1359,8 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace name.
         '''
 Sends the window specified by Client to the workspace specified by Workspace.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
 
 Client may be the window id or a substring that matches a window name.
         '''
@@ -1352,9 +1376,10 @@ Client may be the window id or a substring that matches a window name.
 Sets the workspace specified by Workspace to appear on the head specified by
 the Head index.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
 
-Head indexing starts at 0. Heads are ordered by their physical position: left 
+Head indexing starts at 0. Heads are ordered by their physical position: left
 to right and then top to bottom.
         '''
         self._assert_arg_type('Head', Head, [int])
@@ -1369,7 +1394,8 @@ to right and then top to bottom.
 Sets the current workspace to the workspace specified by Workspace, and moves
 the window specified by Client to that workspace.
 
-Workspace may be a workspace index (integer) starting at 0, or a workspace name.
+Workspace may be a workspace index (integer) starting at 0, or a workspace
+name.
 
 Client may be the window id or a substring that matches a window name.
         '''

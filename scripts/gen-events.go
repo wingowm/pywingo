@@ -26,7 +26,7 @@ func main() {
 		log.Fatalf("go/parser error: %s", err)
 	}
 
-	fmt.Println("from collections import namedtuple\n")
+	fmt.Println("from collections import namedtuple\n\n")
 
 	typeName := ""
 	ast.Inspect(f, func(n ast.Node) bool {
@@ -47,14 +47,14 @@ func main() {
 }
 
 func printEvent(typeName string, fields []string) {
-	quote := func(f string) string { return "'" + f + "'" }
-	quoted := fun.Map(quote, fields).([]string)
-	fmt.Printf("%s = namedtuple('%s', [%s])\n", typeName, typeName,
-		strings.Join(quoted, ", "))
-
 	index := func(f string) string { return "j['" + f + "']" }
 	indexed := fun.Map(index, fields).([]string)
 	fmt.Printf("def _new_%s(j):\n", typeName)
 	fmt.Printf("    assert j['EventName'] == '%s'\n", typeName)
-	fmt.Printf("    return %s(%s)\n\n", typeName, strings.Join(indexed, ", "))
+	fmt.Printf("    return %s(%s)\n", typeName, strings.Join(indexed, ", "))
+
+	quote := func(f string) string { return "'" + f + "'" }
+	quoted := fun.Map(quote, fields).([]string)
+	fmt.Printf("%s = namedtuple('%s', [%s])\n\n\n", typeName, typeName,
+		strings.Join(quoted, ", "))
 }
