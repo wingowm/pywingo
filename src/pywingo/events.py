@@ -5,6 +5,16 @@ def _new_Noop(j):
     assert j['EventName'] == 'Noop'
     return Noop()
 
+Restarting = namedtuple('Restarting', [])
+def _new_Restarting(j):
+    assert j['EventName'] == 'Restarting'
+    return Restarting()
+
+Subscribed = namedtuple('Subscribed', [])
+def _new_Subscribed(j):
+    assert j['EventName'] == 'Subscribed'
+    return Subscribed()
+
 ChangedWorkspace = namedtuple('ChangedWorkspace', [])
 def _new_ChangedWorkspace(j):
     assert j['EventName'] == 'ChangedWorkspace'
