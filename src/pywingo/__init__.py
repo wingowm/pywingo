@@ -59,19 +59,24 @@ class _wingoUtil(WingoCommands):
 
 class Wingo(_wingoUtil):
     def __init__(self):
-        self.__sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-        f = os.path.join(os.getenv('XDG_RUNTIME_DIR'), 'wingo',
-                         os.getenv('DISPLAY'))
-        self.__sock.connect(f)
+        self.__path = os.path.join(os.getenv('XDG_RUNTIME_DIR'), 'wingo',
+                                   os.getenv('DISPLAY'))
         self.__buf = ''
         self.__evbuf = ''
         self.__callbacks = { }
+
+        # Not opened until the first command is issued.
+        self.__sock = None
 
         # Not opened until the event loop is started.
         self.__evsock = None
 
     def __del__(self):
         self.__sock.close()
+
+    def __reconnect(self):
+        self.__sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        self.__sock.connect(self.__path)
 
     def __recv(self):
         while chr(0) not in self.__buf:
@@ -107,6 +112,8 @@ class Wingo(_wingoUtil):
         as a string. This should only be used if you know it's necessary.
         Otherwise, use the API to run commands.
         '''
+        if self.__sock is None:
+            self.__reconnect()
         self.__sock.send("%s%s" % (cmd, chr(0)))
         return self.__recv()
 
@@ -168,6 +175,9 @@ class Wingo(_wingoUtil):
 
         assert False, 'bug'
 
+    def __wingo_restarting(self, ev):
+        self.__sock = None
+
     def loop(self, restart=True):
         '''
         Listens for event notifications and executes callbacks when
@@ -178,10 +188,13 @@ class Wingo(_wingoUtil):
         program alive if Wingo restarts. (If Wingo really does die, the
         reconnection will fail and a regular socket error will be raised.)
         '''
+
+        # Invalidate the Gribble socket once Wingo starts restarting.
+        self.bind('Restarting', self.__wingo_restarting)
+
         try:
             self.__evsock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-            f = os.path.join(os.getenv('XDG_RUNTIME_DIR'), 'wingo',
-                             os.getenv('DISPLAY') + '-notify')
+            f = os.path.join(self.__path + '-notify')
             self.__evsock.connect(f)
             
             while True:
