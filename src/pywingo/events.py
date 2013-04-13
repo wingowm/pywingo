@@ -55,10 +55,10 @@ def _new_ManagedClient(j):
     assert j['EventName'] == 'ManagedClient'
     return ManagedClient(j['Id'])
 
-UnmanagedClient = namedtuple('UnmanagedClient', ['Id'])
+UnmanagedClient = namedtuple('UnmanagedClient', ['Id', 'Name', 'Workspace', 'Class', 'Instance'])
 def _new_UnmanagedClient(j):
     assert j['EventName'] == 'UnmanagedClient'
-    return UnmanagedClient(j['Id'])
+    return UnmanagedClient(j['Id'], j['Name'], j['Workspace'], j['Class'], j['Instance'])
 
 ChangedClientName = namedtuple('ChangedClientName', ['Id'])
 def _new_ChangedClientName(j):
