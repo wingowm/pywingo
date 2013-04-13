@@ -10,6 +10,7 @@ import pywingo.events as events
 
 _bool_cmds = ['True', 'False', 'Not', 'And', 'Or']
 
+
 class WingoError(Exception):
     def __init__(self, message):
         self.message = message
@@ -51,10 +52,31 @@ class _wingoUtil(WingoCommands):
         Returns true if the given Workspace has no clients. (Including
         iconified clients.)
 
-        Workspace may be a workspace index (integer) starting at 0, or a 
+        Workspace may be a workspace index (integer) starting at 0, or a
         workspace name.
         '''
         return len(self.GetClientList(Workspace)) == 0
+
+    def GetVisibleWorkspaceList(self):
+        '''
+        Returns a list of all visible workspaces in order of their
+        physical position: left to right and then top to bottom.
+        '''
+        spaces = []
+        for i in xrange(self.GetNumHeads()):
+            spaces.append(self.GetHeadWorkspace(i))
+        return spaces
+
+    def GetHiddenWorkspaceList(self):
+        '''
+        Returns a list of all hidden workspaces.
+        '''
+        spaces = []
+        visibles = set(self.GetVisibleWorkspaceList())
+        for space in self.GetWorkspaceList():
+            if space not in visibles:
+                spaces.append(space)
+        return spaces
 
 
 class Wingo(_wingoUtil):
@@ -63,7 +85,7 @@ class Wingo(_wingoUtil):
                                    os.getenv('DISPLAY'))
         self.__buf = ''
         self.__evbuf = ''
-        self.__callbacks = { }
+        self.__callbacks = {}
 
         # Not opened until the first command is issued.
         self.__sock = None
@@ -196,7 +218,7 @@ class Wingo(_wingoUtil):
             self.__evsock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
             f = os.path.join(self.__path + '-notify')
             self.__evsock.connect(f)
-            
+
             while True:
                 evJson = self.__recv_event()
                 j = json.loads(evJson)
@@ -235,4 +257,3 @@ class Wingo(_wingoUtil):
         if f is None:
             return doit
         doit(f)
-
