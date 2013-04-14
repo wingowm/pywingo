@@ -1057,6 +1057,17 @@ after you've made changes to its configuration.
         val = self.gribble('Restart %s' % arg_str)
         return self._from_str('Restart', val)
 
+    def Script(self, Command):
+        '''
+Executes a script in $XDG_CONFIG_HOME/wingo/scripts. The command
+may include arguments.
+        '''
+        self._assert_arg_type('Command', Command, [basestring])
+
+        arg_str = self._gribble_arg_str([Command])
+        val = self.gribble('Script %s' % arg_str)
+        return self._from_str('Script', val)
+
     def SelectClient(self, TabCompletion, OnlyActiveWorkspace, OnlyVisible, ShowIconified):
         '''
 Shows a centered prompt window with a list of clients satisfying the arguments
@@ -1150,11 +1161,6 @@ completely transparent and 1.0 is completely opaque.
         '''
 Attempts to execute the shell command specified by Command. If an error occurs,
 it will be logged to Wingo's stderr.
-
-Note that the parser for translating shell commands to something acceptable
-for Go's os/exec package is fairly primitive. Therefore, this should not be
-considered as a suitable replacement for similar utilities (like gmrun or
-xbindkeys).
         '''
         self._assert_arg_type('Command', Command, [basestring])
 
