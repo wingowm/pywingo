@@ -11,7 +11,7 @@ import pywingo.events as events
 _bool_cmds = ['True', 'False', 'Not', 'And', 'Or']
 _string_cmds = ['GetWorkspace', 'GetWorkspaceList',
                 'GetWorkspaceNext', 'GetWorkspacePrev', 'GetWorkspacePrefix',
-                'GetHeadWorkspace']
+                'GetHeadWorkspace', 'GetClientWorkspace']
 
 
 class WingoError(Exception):
