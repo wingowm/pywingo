@@ -27,7 +27,7 @@ class Disconnected(Exception):
         return 'socket disconnected'
 
 
-class _wingoUtil(WingoCommands):
+class WingoUtil(WingoCommands):
     '''
     Provides a set of utility functions on top of the base commands
     defined by Wingo. These are special to the Python Wingo bindings.
@@ -79,7 +79,7 @@ class _wingoUtil(WingoCommands):
         return spaces
 
 
-class Wingo(_wingoUtil):
+class Wingo(WingoUtil):
     def __init__(self):
         self.__path = os.path.join(os.getenv('XDG_RUNTIME_DIR'), 'wingo',
                                    os.getenv('DISPLAY'))
