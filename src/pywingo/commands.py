@@ -782,6 +782,18 @@ Client may be the window id or a substring that matches a window name.
         val = self.gribble('MatchClientIsTransient %s' % arg_str)
         return self._from_str('MatchClientIsTransient', val)
 
+    def MatchClientMapped(self, Client):
+        '''
+Returns 1 if the window specified by Client is mapped or not.
+
+Client may be the window id or a substring that matches a window name.
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+
+        arg_str = self._gribble_arg_str([Client])
+        val = self.gribble('MatchClientMapped %s' % arg_str)
+        return self._from_str('MatchClientMapped', val)
+
     def MatchClientName(self, Client, Name):
         '''
 Returns 1 if the name of the window specified by Client contains the substring
