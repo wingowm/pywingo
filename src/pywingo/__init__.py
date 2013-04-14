@@ -262,7 +262,8 @@ class Wingo(WingoUtil):
             if event_name not in self.__callbacks:
                 self.__callbacks[event_name] = []
             self.__callbacks[event_name].append(fun)
+            return fun
 
         if f is None:
             return doit
-        doit(f)
+        return doit(f)
