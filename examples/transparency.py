@@ -9,27 +9,27 @@ alpha = {
     'focused': 1.0,
 }
 
-# Does the initial connection with Wingo. `w` can now be used to run commands.
-w = pywingo.Wingo()
+# Does the initial connection with Wingo. `W` can now be used to run commands.
+W = pywingo.Wingo()
 
 # Use Python decorators to bind functions to specific events.
-@w.bind('FocusedClient')
+@W.bind('FocusedClient')
 def focused(ev):
-    w.SetOpacity(ev.Id, alpha['focused'])
+    W.SetOpacity(ev.Id, alpha['focused'])
 
-@w.bind('UnfocusedClient')
+@W.bind('UnfocusedClient')
 def focused(ev):
-    w.SetOpacity(ev.Id, alpha['unfocused'])
+    W.SetOpacity(ev.Id, alpha['unfocused'])
 
 # Set the transparency of all clients upon subscription.
-@w.bind('Subscribed')
+@W.bind('Subscribed')
 def startup(ev):
-    active = w.GetActive()
-    for cid in w.GetAllNormalClients():
+    active = W.GetActive()
+    for cid in W.GetAllNormalClients():
         if cid == active:
-            w.SetOpacity(cid, alpha['focused'])
+            W.SetOpacity(cid, alpha['focused'])
         else:
-            w.SetOpacity(cid, alpha['unfocused'])
+            W.SetOpacity(cid, alpha['unfocused'])
 
 # Use the special `atexit.register` decoration in the Python standard
 # library to do any clean up if your program quits.
@@ -37,9 +37,9 @@ def startup(ev):
 def shutdown():
     # If the program quits unexpectedly, return opacity
     # to normal levels.
-    for cid in w.GetAllNormalClients():
-        w.SetOpacity(cid, 1.0)
+    for cid in W.GetAllNormalClients():
+        W.SetOpacity(cid, 1.0)
 
 # Start the main event loop. This should be the last thing in your program.
-w.loop()
+W.loop()
 
