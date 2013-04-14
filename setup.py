@@ -11,13 +11,18 @@ try:
 except IndexError:
     docfiles = []
 
+try:
+    exfiles = map(lambda s: 'examples/%s' % s, list(os.walk('examples'))[0][2])
+except IndexError:
+    exfiles = []
+
 setup(
     name='pywingo',
     author='Drew Liszewski',
     author_email='drew.liszewski@gmail.com',
     maintainer='Andrew Gallant',
     maintainer_email='andrew@burntsushi.net',
-    version='0.0.3',
+    version='0.0.4',
     license='WTFPL',
     description='Provide access to wingo via sockets',
     long_description=longdesc,
@@ -37,5 +42,7 @@ setup(
     packages=['pywingo'],
     package_dir={'pywingo': 'src/pywingo'},
     data_files=[('share/doc/pywingo', ['README', 'COPYING']),
-                ('share/doc/pywingo/doc', docfiles)],
+                ('share/doc/pywingo/doc', docfiles),
+                ('share/doc/pywingo/examples', exfiles),
+               ],
 )
