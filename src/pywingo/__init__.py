@@ -97,7 +97,8 @@ class Wingo(WingoUtil):
         self.__evsock = None
 
     def __del__(self):
-        self.__sock.close()
+        if self.__sock is not None:
+            self.__sock.close()
 
     def __reconnect(self):
         self.__sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
@@ -207,6 +208,8 @@ class Wingo(WingoUtil):
         assert False, 'bug'
 
     def __wingo_restarting(self, ev):
+        if self.__sock is not None:
+            self.__sock.close()
         self.__sock = None
 
     def loop(self, restart=True):
