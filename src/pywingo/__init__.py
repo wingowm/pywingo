@@ -9,6 +9,9 @@ from pywingo.commands import WingoCommands
 import pywingo.events as events
 
 _bool_cmds = ['True', 'False', 'Not', 'And', 'Or']
+_string_cmds = ['GetWorkspace', 'GetWorkspaceList',
+                'GetWorkspaceNext', 'GetWorkspacePrev', 'GetWorkspacePrefix',
+                'GetHeadWorkspace']
 
 
 class WingoError(Exception):
@@ -170,6 +173,9 @@ class Wingo(WingoUtil):
             return map(lambda item: self._primitive_from_str(cmd_name, item),
                        trimmed.split('\n'))
 
+        if cmd_name in _string_cmds:
+            return s
+
         try:
             return int(s)
         except ValueError:
@@ -186,6 +192,9 @@ class Wingo(WingoUtil):
     def _primitive_from_str(self, cmd_name, s):
         if cmd_name in _bool_cmds or cmd_name.startswith('Match'):
             return bool(int(s))
+
+        if cmd_name in _string_cmds:
+            return s
 
         try:
             return int(s)
