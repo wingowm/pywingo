@@ -14,6 +14,7 @@ _bool_cmds = ['True', 'False', 'Not', 'And', 'Or']
 _string_cmds = ['GetWorkspace', 'GetWorkspaceList',
                 'GetWorkspaceNext', 'GetWorkspacePrev', 'GetWorkspacePrefix',
                 'GetHeadWorkspace', 'GetClientWorkspace']
+_list_cmds = ['GetAllClients']
 
 
 class WingoError(Exception):
@@ -188,7 +189,7 @@ class Wingo(WingoUtil):
         if cmd_name in _bool_cmds or cmd_name.startswith('Match'):
             return bool(int(s))
 
-        if 'List' in cmd_name or '\n' in s:
+        if 'List' in cmd_name or '\n' in s or cmd_name in _list_cmds:
             trimmed = s.strip()
             if len(trimmed) == 0:
                 return []
