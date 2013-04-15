@@ -2,7 +2,9 @@ import json
 import os
 import os.path
 import socket
+import subprocess
 import sys
+import tempfile
 import time
 
 from pywingo.commands import WingoCommands
@@ -83,9 +85,26 @@ class WingoUtil(WingoCommands):
 
 
 class Wingo(WingoUtil):
-    def __init__(self):
-        self.__path = os.path.join(os.getenv('XDG_RUNTIME_DIR'), 'wingo',
-                                   os.getenv('DISPLAY'))
+    def __init__(self, display=None):
+        '''
+        Initializes a connection with an instance of Wingo.
+        Once a connection has been established, commands can be
+        executed.
+
+        If `display` is not set, then pywingo will try to find the
+        current instance of Wingo and connect to that. This is almost
+        always what you want, unless you know you need to connect to
+        an instance of Wingo from within a different X session (or no
+        X session at all).
+
+        If `display` is set, then it *must* be in the following format:
+
+            :{X Server}.{X Screen}
+
+        e.g., `:0.0` or `:11.1`.
+
+        Any other format is invalid.
+        '''
         self.__buf = ''
         self.__evbuf = ''
         self.__callbacks = {}
@@ -95,6 +114,8 @@ class Wingo(WingoUtil):
 
         # Not opened until the event loop is started.
         self.__evsock = None
+
+        self.__path = _socket_filepath(display)
 
     def __del__(self):
         if self.__sock is not None:
@@ -270,3 +291,17 @@ class Wingo(WingoUtil):
         if f is None:
             return doit
         return doit(f)
+
+def _socket_filepath(display=None):
+    if display is not None:
+        rundir = os.getenv('XDG_RUNTIME_DIR').strip()
+        if len(rundir) == 0:
+            rundir = tempfile.gettempdir()
+        return os.path.join(rundir, 'wingo', display)
+
+    try:
+        fp = subprocess.check_output(['wingo', '--show-socket'],
+                                     stderr=subprocess.STDOUT)
+        return fp.strip()
+    except subprocess.CalledProcessError, e:
+        raise WingoError(e.output)
