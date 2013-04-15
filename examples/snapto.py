@@ -2,8 +2,11 @@ import sys
 
 import pywingo
 
-if len(sys.argv) != 2 or sys.argv[1] not in ('top', 'bot', 'left', 'right'):
-    print >> sys.stderr, 'Usage: growto (top | bot | left | right)'
+if len(sys.argv) != 3 \
+    or sys.argv[1] not in ('grow', 'shrink', 'move') \
+    or sys.argv[2] not in ('top', 'bot', 'left', 'right'):
+    print >> sys.stderr, \
+             'Usage: snapto (grow | shrink | move) (top | bot | left | right)'
     sys.exit(1)
 
 def edges(client):
@@ -40,7 +43,6 @@ def newpos(vertical, order, default, include):
     next edge to move/grow/shrink to from a list of candidate edges.
 
     `default` is the edge of last resort if no other edges were found.
-    It is also used as a min/max depending on `order`.
     (e.g., the head boundary.)
 
     `include` is the comparison criterion for edges. It should return
@@ -54,10 +56,11 @@ def newpos(vertical, order, default, include):
         else:
             return [edges['left'], edges['right']]
     candidates = filter(include, flatten(map(extract, alledges)))
-    return order(default, order(candidates) if candidates else default)
+    return order(candidates) if candidates else default
 
 # Initialization. Connect and grab the edges/geometry of the active client.
-direction = sys.argv[1]
+action = sys.argv[1]
+direction = sys.argv[2]
 W = pywingo.Wingo()
 
 win = W.GetActive()
@@ -80,24 +83,56 @@ for c in clients:
         continue
     alledges.append(edges(c))
 
-if direction == 'top':
-    newtop = newpos(True, max, 0, lambda e: e < wine['top'])
+def grow():
+    if direction == 'top':
+        newtop = max(0, newpos(True, max, 0, lambda e: e < wine['top']))
 
-    W.MoveRelative(win, wine['left'], newtop)
-    W.Resize(win, wine_width, wine_height + wine['top'] - newtop)
-elif direction == 'left':
-    newleft = newpos(False, max, 0, lambda e: e < wine['left'])
+        W.MoveRelative(win, wine['left'], newtop)
+        W.Resize(win, wine_width, wine_height + wine['top'] - newtop)
+    elif direction == 'left':
+        newleft = max(0, newpos(False, max, 0, lambda e: e < wine['left']))
 
-    W.MoveRelative(win, newleft, wine['top'])
-    W.Resize(win, wine_width + wine['left'] - newleft, wine_height)
-elif direction == 'bot':
-    newbot = newpos(True, min, headh, lambda e: e > wine['bot'])
+        W.MoveRelative(win, newleft, wine['top'])
+        W.Resize(win, wine_width + wine['left'] - newleft, wine_height)
+    elif direction == 'bot':
+        newbot = min(headh, newpos(True, min, headh, lambda e: e > wine['bot']))
 
-    W.Resize(win, wine_width, newbot - wine['top'])
-elif direction == 'right':
-    newright = newpos(False, min, headw, lambda e: e > wine['right'])
+        W.Resize(win, wine_width, newbot - wine['top'])
+    elif direction == 'right':
+        newright = newpos(False, min, headw, lambda e: e > wine['right'])
+        newright = min(headw, newright)
 
-    W.Resize(win, newright - wine['left'], wine_height)
+        W.Resize(win, newright - wine['left'], wine_height)
+    else:
+        assert False, 'bug'
+
+def shrink():
+    if direction == 'top':
+        newtop = newpos(True, min, wine['top'],
+                        lambda e: e > wine['top'] and e < wine['bot'])
+
+        print newtop
+        # W.MoveRelative(win, wine['left'], newtop) 
+        # W.Resize(win, wine_width, wine_height + wine['top'] - newtop) 
+    elif direction == 'left':
+        newleft = newpos(False, max, 0, lambda e: e < wine['left'])
+
+        W.MoveRelative(win, newleft, wine['top'])
+        W.Resize(win, wine_width + wine['left'] - newleft, wine_height)
+    elif direction == 'bot':
+        newbot = newpos(True, min, headh, lambda e: e > wine['bot'])
+
+        W.Resize(win, wine_width, newbot - wine['top'])
+    elif direction == 'right':
+        newright = newpos(False, min, headw, lambda e: e > wine['right'])
+
+        W.Resize(win, newright - wine['left'], wine_height)
+    else:
+        assert False, 'bug'
+
+if action == 'grow':
+    grow()
+elif action == 'shrink':
+    shrink()
 else:
     assert False, 'bug'
-
