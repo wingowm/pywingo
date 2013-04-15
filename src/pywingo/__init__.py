@@ -99,7 +99,7 @@ class Wingo(WingoUtil):
 
         If `display` is set, then it *must* be in the following format:
 
-            :{X Server}.{X Screen}
+        :{X Server}.{X Screen}
 
         e.g., `:0.0` or `:11.1`.
 
