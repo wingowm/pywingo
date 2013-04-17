@@ -468,6 +468,22 @@ Client may be the window id or a substring that matches a window name.
         val = self.gribble('GetClientName %s' % arg_str)
         return self._from_str('GetClientName', val)
 
+    def GetClientStatesList(self, Client):
+        '''
+Returns a list of states that the client is in. These states are in
+correspondence with the possible values of the _NET_WM_STATE property.
+The following states may appear in the list: STICKY, MAXIMIZED_VERT,
+MAXIMIZED_HORZ, SKIP_TASKBAR, SKIP_PAGER, HIDDEN, FULLSCREEN,
+ABOVE, BELOW and DEMANDS_ATTENTION.
+
+Client may be the window id or a substring that matches a window name.
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+
+        arg_str = self._gribble_arg_str([Client])
+        val = self.gribble('GetClientStatesList %s' % arg_str)
+        return self._from_str('GetClientStatesList', val)
+
     def GetClientType(self, Client):
         '''
 Returns the type of the window specified by Client active window. A window
@@ -720,6 +736,19 @@ Client may be the window id or a substring that matches a window name.
         arg_str = self._gribble_arg_str([Head, Client])
         val = self.gribble('HeadFocusWithClient %s' % arg_str)
         return self._from_str('HeadFocusWithClient', val)
+
+    def HideClientFromPanels(self, Client):
+        '''
+Sets the appropriate flags so that the window specified by Client is
+hidden from panels and pagers.
+
+Client may be the window id or a substring that matches a window name.
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+
+        arg_str = self._gribble_arg_str([Client])
+        val = self.gribble('HideClientFromPanels %s' % arg_str)
+        return self._from_str('HideClientFromPanels', val)
 
     def Input(self, Label):
         '''
@@ -1167,6 +1196,50 @@ it will be logged to Wingo's stderr.
         arg_str = self._gribble_arg_str([Command])
         val = self.gribble('Shell %s' % arg_str)
         return self._from_str('Shell', val)
+
+    def ShowClientInPanels(self, Client):
+        '''
+Sets the appropriate flags so that the window specified by Client is
+shown on panels and pagers.
+
+Client may be the window id or a substring that matches a window name.
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+
+        arg_str = self._gribble_arg_str([Client])
+        val = self.gribble('ShowClientInPanels %s' % arg_str)
+        return self._from_str('ShowClientInPanels', val)
+
+    def TagGet(self, Client, Name):
+        '''
+Retrieves the tag with name Name for the client specified by Client.
+
+Client may be the window id or a substring that matches a window name.
+
+Tag names may only contain the following characters: [-a-zA-Z0-9_].
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Name', Name, [basestring])
+
+        arg_str = self._gribble_arg_str([Client, Name])
+        val = self.gribble('TagGet %s' % arg_str)
+        return self._from_str('TagGet', val)
+
+    def TagSet(self, Client, Name, Value):
+        '''
+Sets the tag with name Name to value Value for the client specified by Client.
+
+Client may be the window id or a substring that matches a window name.
+
+Tag names may only contain the following characters: [-a-zA-Z0-9_].
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Name', Name, [basestring])
+        self._assert_arg_type('Value', Value, [basestring])
+
+        arg_str = self._gribble_arg_str([Client, Name, Value])
+        val = self.gribble('TagSet %s' % arg_str)
+        return self._from_str('TagSet', val)
 
     def ToggleFloating(self, Client):
         '''
