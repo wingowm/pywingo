@@ -314,6 +314,19 @@ Make sure "audio_play_cmd" is set to a program that can play wav files.
         val = self.gribble('Dale %s' % arg_str)
         return self._from_str('Dale', val)
 
+    def Deiconify(self, Client):
+        '''
+Deiconifies (unminimizes) the window specified by Client. If the window
+is already deiconified, this command has no effect.
+
+Client may be the window id or a substring that matches a window name.
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+
+        arg_str = self._gribble_arg_str([Client])
+        val = self.gribble('Deiconify %s' % arg_str)
+        return self._from_str('Deiconify', val)
+
     def False(self):
         '''
 Always returns 0.
@@ -474,7 +487,9 @@ Returns a list of states that the client is in. These states are in
 correspondence with the possible values of the _NET_WM_STATE property.
 The following states may appear in the list: STICKY, MAXIMIZED_VERT,
 MAXIMIZED_HORZ, SKIP_TASKBAR, SKIP_PAGER, HIDDEN, FULLSCREEN,
-ABOVE, BELOW and DEMANDS_ATTENTION.
+ABOVE, BELOW, DEMANDS_ATTENTION and FOCUSED.
+
+More details can be found here: http://goo.gl/FHdjl
 
 Client may be the window id or a substring that matches a window name.
         '''
@@ -749,6 +764,19 @@ Client may be the window id or a substring that matches a window name.
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('HideClientFromPanels %s' % arg_str)
         return self._from_str('HideClientFromPanels', val)
+
+    def Iconify(self, Client):
+        '''
+Iconifies (minimizes) the window specified by Client. If the window
+is already iconified, this command has no effect.
+
+Client may be the window id or a substring that matches a window name.
+        '''
+        self._assert_arg_type('Client', Client, [int, basestring])
+
+        arg_str = self._gribble_arg_str([Client])
+        val = self.gribble('Iconify %s' % arg_str)
+        return self._from_str('Iconify', val)
 
     def Input(self, Label):
         '''
