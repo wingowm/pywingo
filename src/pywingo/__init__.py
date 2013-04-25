@@ -158,12 +158,23 @@ class Wingo(WingoUtil):
         '''
         Executes a raw Gribble commands and always returns the result
         as a string. This should only be used if you know it's necessary.
-        Otherwise, use the API to run commands.
+        Otherwise, use the API to run specific commands.
         '''
+        try:
+            self.__send_cmd(cmd)
+            return self.__recv()
+        except Disconnected:
+            # Try again, just once.
+            self.__send_cmd(cmd)
+            return self.__recv()
+
+    def __send_cmd(self, cmd):
         if self.__sock is None:
             self.__reconnect()
-        self.__sock.send("%s%s" % (cmd, chr(0)))
-        return self.__recv()
+        try:
+            self.__sock.send('%s%s' % (cmd, chr(0)))
+        except:
+            raise Disconnected
 
     def _assert_arg_type(self, name, val, types):
         for t in types:
