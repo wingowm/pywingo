@@ -22,11 +22,11 @@ setup(
     author_email='drew.liszewski@gmail.com',
     maintainer='Andrew Gallant',
     maintainer_email='andrew@burntsushi.net',
-    version='0.0.5',
+    version='0.0.6',
     license='WTFPL',
     description='Provide access to wingo via sockets',
     long_description=longdesc,
-    url='https://github.com/BurntSushi/pywingo',
+    url='https://github.com/wingowm/pywingo',
     classifiers=[
         'License :: Public Domain',
         'Development Status :: 3 - Alpha',
