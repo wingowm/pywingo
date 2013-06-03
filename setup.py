@@ -26,7 +26,7 @@ setup(
     license='WTFPL',
     description='Provide access to wingo via sockets',
     long_description=longdesc,
-    url='https://github.com/BurntSushi/pywingo',
+    url='https://github.com/wingowm/pywingo',
     classifiers=[
         'License :: Public Domain',
         'Development Status :: 3 - Alpha',
