@@ -11,7 +11,7 @@ pypi-meta:
 	python2 setup.py register
 
 pep8:
-	pep8-python2 src/pywingo/{__init__,pywingo}.py
+	pep8-python2 src/pywingo/{__init__,commands,events}.py
 
 gen: bins
 	bin/gen-events ~/go/src/github.com/BurntSushi/wingo/event/events.go \

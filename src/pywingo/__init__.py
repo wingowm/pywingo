@@ -101,7 +101,7 @@ class WingoUtil(WingoCommands):
             print >> sys.stderr, "Please make sure there is a config file " \
                                  "in ~/.config/wingo/scripts/%s" % fname
             sys.exit(1)
-        
+
         cfg = ConfigParser.RawConfigParser()
         cfg.read(cfg_path)
         return cfg
@@ -325,6 +325,7 @@ class Wingo(WingoUtil):
         if f is None:
             return doit
         return doit(f)
+
 
 def _socket_filepath(display=None):
     if display is not None:
