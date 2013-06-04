@@ -1,3 +1,4 @@
+import ConfigParser
 import json
 import os
 import os.path
@@ -83,6 +84,27 @@ class WingoUtil(WingoCommands):
             if space not in visibles:
                 spaces.append(space)
         return spaces
+
+    def LoadConfig(self):
+        '''
+        Returns a ConfigParser.RawConfigParser instance of your
+        script-name.cfg file. This should only be used inside a
+        Wingo contrib script program.
+
+        If the config file is not readable, then the program will
+        terminate with an error message.
+        '''
+        fname = os.path.basename(sys.argv[0])
+        cfg_path = self.ScriptConfig(fname)
+        if not os.access(cfg_path, os.R_OK):
+            print >> sys.stderr, "Could not read config file for %s" % fname
+            print >> sys.stderr, "Please make sure there is a config file " \
+                                 "in ~/.config/wingo/scripts/%s" % fname
+            sys.exit(1)
+        
+        cfg = ConfigParser.RawConfigParser()
+        cfg.read(cfg_path)
+        return cfg
 
 
 class Wingo(WingoUtil):

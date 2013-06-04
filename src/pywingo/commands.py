@@ -726,6 +726,16 @@ multi-head setups, since multiple workspaces can be viewable at one time.
         val = self.gribble('GetWorkspacePrev %s' % arg_str)
         return self._from_str('GetWorkspacePrev', val)
 
+    def HeadCycle(self):
+        '''
+Cycles focus to the next head, ordered by index. Heads are ordered
+by their physical position: left to right and then top to bottom.
+        '''
+
+        arg_str = self._gribble_arg_str([])
+        val = self.gribble('HeadCycle %s' % arg_str)
+        return self._from_str('HeadCycle', val)
+
     def HeadFocus(self, Head):
         '''
 Focuses the head indexed at Head. Indexing starts at 0. Heads are ordered
@@ -1124,6 +1134,16 @@ may include arguments.
         arg_str = self._gribble_arg_str([Command])
         val = self.gribble('Script %s' % arg_str)
         return self._from_str('Script', val)
+
+    def ScriptConfig(self, ScriptName):
+        '''
+Returns the path to a script's configuration file.
+        '''
+        self._assert_arg_type('ScriptName', ScriptName, [basestring])
+
+        arg_str = self._gribble_arg_str([ScriptName])
+        val = self.gribble('ScriptConfig %s' % arg_str)
+        return self._from_str('ScriptConfig', val)
 
     def SelectClient(self, TabCompletion, OnlyActiveWorkspace, OnlyVisible, ShowIconified):
         '''
