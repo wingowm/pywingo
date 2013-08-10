@@ -11,6 +11,8 @@ import time
 from pywingo.commands import WingoCommands
 import pywingo.events as events
 
+__all__ = ['Wingo', 'WingoError', 'Disconnected', 'events']
+
 _bool_cmds = ['True', 'False', 'Not', 'And', 'Or']
 _string_cmds = ['GetWorkspace', 'GetWorkspaceList',
                 'GetWorkspaceNext', 'GetWorkspacePrev', 'GetWorkspacePrefix',
