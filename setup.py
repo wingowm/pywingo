@@ -1,15 +1,11 @@
 from distutils.core import setup
+from glob import glob
 import os
 
 longdesc = \
 '''A Python 2.x library that communicates, within an active X session, with
 wingo via sockets. Pywingo allows for easy scripting similar to how a person
 would use `wingo-cmd` in a shell script by calling `gribble`.'''
-
-try:
-    docfiles = map(lambda s: 'doc/%s' % s, list(os.walk('doc'))[0][2])
-except IndexError:
-    docfiles = []
 
 try:
     exfiles = map(lambda s: 'examples/%s' % s, list(os.walk('examples'))[0][2])
@@ -22,7 +18,7 @@ setup(
     author_email='drew.liszewski@gmail.com',
     maintainer='Andrew Gallant',
     maintainer_email='andrew@burntsushi.net',
-    version='0.0.8',
+    version='0.0.9',
     license='WTFPL',
     description='Provide access to wingo via sockets',
     long_description=longdesc,
@@ -40,9 +36,8 @@ setup(
     ],
     platforms='Linux',
     packages=['pywingo'],
-    package_dir={'pywingo': 'src/pywingo'},
     data_files=[('share/doc/pywingo', ['README.md', 'COPYING']),
-                ('share/doc/pywingo/doc', docfiles),
+                ('share/doc/pywingo/doc', glob('doc/pywingo/*.html')),
                 ('share/doc/pywingo/examples', exfiles),
                ],
 )
