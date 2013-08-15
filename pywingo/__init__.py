@@ -1,3 +1,9 @@
+"""
+Module pywingo provides a high level interface to the
+[Wingo](https://github.com/BurntSushi/wingo) window manager. This
+includes running commands to manage your windows and workspaces, and
+responding to events sent by Wingo.
+"""
 import ConfigParser
 import json
 import os
