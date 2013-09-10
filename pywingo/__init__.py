@@ -218,7 +218,7 @@ class Wingo(WingoUtil):
             if isinstance(v, int) or isinstance(v, float):
                 args.append(repr(v))
             elif isinstance(v, basestring):
-                args.append('"%s"' % self._escape_str(v))
+                args.append('`%s`' % self._escape_str(v))
             else:
                 assert False, 'bug'
         return ' '.join(args)
