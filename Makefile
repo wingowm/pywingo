@@ -14,7 +14,7 @@ dev-install: docs
 	pip install -U dist/*.tar.gz
 
 pep8:
-	pep8-python2 src/pywingo/{__init__,commands,events}.py
+	pep8-python2 pywingo/{__init__,commands,events}.py
 
 push:
 	git push origin master
@@ -22,8 +22,8 @@ push:
 
 gen: bins
 	bin/gen-events ~/go/src/github.com/BurntSushi/wingo/event/events.go \
-		> src/pywingo/events.py
-	bin/gen-command-stubs > src/pywingo/commands.py
+		> pywingo/events.py
+	bin/gen-command-stubs > pywingo/commands.py
 
 bins:
 	go build -o bin/gen-events scripts/gen-events.go
