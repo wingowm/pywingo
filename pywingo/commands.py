@@ -1263,6 +1263,8 @@ Client may be the window id or a substring that matches a window name.
 Retrieves the tag with name Name for the client specified by Client.
 
 Client may be the window id or a substring that matches a window name.
+Or, it may be zero and the property will be retrieved from the root
+window.
 
 Tag names may only contain the following characters: [-a-zA-Z0-9_].
         '''
@@ -1278,6 +1280,7 @@ Tag names may only contain the following characters: [-a-zA-Z0-9_].
 Sets the tag with name Name to value Value for the client specified by Client.
 
 Client may be the window id or a substring that matches a window name.
+Or, it may be zero and the property will be set on the root window.
 
 Tag names may only contain the following characters: [-a-zA-Z0-9_].
         '''
