@@ -9,7 +9,7 @@ must be unique with respect to other workspaces and must have non-zero length.
 
 The name of the workspace that was added is returned.
         '''
-        self._assert_arg_type('Name', Name, [basestring])
+        self._assert_arg_type('Name', Name, [str])
 
         arg_str = self._gribble_arg_str([Name])
         val = self.gribble('AddWorkspace %s' % arg_str)
@@ -38,7 +38,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoCycle %s' % arg_str)
@@ -54,7 +54,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoMakeMaster %s' % arg_str)
@@ -70,7 +70,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoMaster %s' % arg_str)
@@ -83,7 +83,7 @@ Allows one fewer master window to fit into the master split.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoMastersFewer %s' % arg_str)
@@ -96,7 +96,7 @@ Allows one more master window to fit into the master split.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoMastersMore %s' % arg_str)
@@ -111,7 +111,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoNext %s' % arg_str)
@@ -126,7 +126,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoPrev %s' % arg_str)
@@ -142,7 +142,7 @@ Amount should be a ratio between 0.0 and 1.0.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
         self._assert_arg_type('Amount', Amount, [float])
 
         arg_str = self._gribble_arg_str([Workspace, Amount])
@@ -159,7 +159,7 @@ Amount should be a ratio between 0.0 and 1.0.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
         self._assert_arg_type('Amount', Amount, [float])
 
         arg_str = self._gribble_arg_str([Workspace, Amount])
@@ -175,7 +175,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoSwitchNext %s' % arg_str)
@@ -190,7 +190,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoSwitchPrev %s' % arg_str)
@@ -206,7 +206,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoTile %s' % arg_str)
@@ -223,7 +223,7 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('AutoUntile %s' % arg_str)
@@ -235,7 +235,7 @@ Closes the window specified by Client.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Close %s' % arg_str)
@@ -274,11 +274,15 @@ Valid values are "yes" or "no".
 ShowIconified specifies that iconified clients will be shown. Valid values are
 "yes" or "no".
         '''
-        self._assert_arg_type('OnlyActiveWorkspace', OnlyActiveWorkspace, [basestring])
-        self._assert_arg_type('OnlyVisible', OnlyVisible, [basestring])
-        self._assert_arg_type('ShowIconified', ShowIconified, [basestring])
+        self._assert_arg_type(
+            'OnlyActiveWorkspace', OnlyActiveWorkspace, [str],
+        )
+        self._assert_arg_type('OnlyVisible', OnlyVisible, [str])
+        self._assert_arg_type('ShowIconified', ShowIconified, [str])
 
-        arg_str = self._gribble_arg_str([OnlyActiveWorkspace, OnlyVisible, ShowIconified])
+        arg_str = self._gribble_arg_str([
+            OnlyActiveWorkspace, OnlyVisible, ShowIconified,
+        ])
         val = self.gribble('CycleClientNext %s' % arg_str)
         return self._from_str('CycleClientNext', val)
 
@@ -297,11 +301,15 @@ Valid values are "yes" or "no".
 ShowIconified specifies that iconified clients will be shown. Valid values are
 "yes" or "no".
         '''
-        self._assert_arg_type('OnlyActiveWorkspace', OnlyActiveWorkspace, [basestring])
-        self._assert_arg_type('OnlyVisible', OnlyVisible, [basestring])
-        self._assert_arg_type('ShowIconified', ShowIconified, [basestring])
+        self._assert_arg_type(
+            'OnlyActiveWorkspace', OnlyActiveWorkspace, [str],
+        )
+        self._assert_arg_type('OnlyVisible', OnlyVisible, [str])
+        self._assert_arg_type('ShowIconified', ShowIconified, [str])
 
-        arg_str = self._gribble_arg_str([OnlyActiveWorkspace, OnlyVisible, ShowIconified])
+        arg_str = self._gribble_arg_str([
+            OnlyActiveWorkspace, OnlyVisible, ShowIconified,
+        ])
         val = self.gribble('CycleClientPrev %s' % arg_str)
         return self._from_str('CycleClientPrev', val)
 
@@ -321,20 +329,11 @@ is already deiconified, this command has no effect.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Deiconify %s' % arg_str)
         return self._from_str('Deiconify', val)
-
-    def False(self):
-        '''
-Always returns 0.
-        '''
-
-        arg_str = self._gribble_arg_str([])
-        val = self.gribble('False %s' % arg_str)
-        return self._from_str('False', val)
 
     def Float(self, Client):
         '''
@@ -343,7 +342,7 @@ this command has no effect.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Float %s' % arg_str)
@@ -355,7 +354,7 @@ Focuses the window specified by Client.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Focus %s' % arg_str)
@@ -367,7 +366,7 @@ Focuses and raises the window specified by Client.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('FocusRaise %s' % arg_str)
@@ -379,7 +378,7 @@ Set the decorations of the window specified by Client to the "Borders" frame.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('FrameBorders %s' % arg_str)
@@ -391,7 +390,7 @@ Set the decorations of the window specified by Client to the "Full" frame.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('FrameFull %s' % arg_str)
@@ -403,7 +402,7 @@ Set the decorations of the window specified by Client to the "Nada" frame.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('FrameNada %s' % arg_str)
@@ -415,7 +414,7 @@ Set the decorations of the window specified by Client to the "Slim" frame.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('FrameSlim %s' % arg_str)
@@ -448,7 +447,7 @@ decorations. If the client id is invalid, 0 is returned.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientHeight %s' % arg_str)
@@ -463,7 +462,7 @@ focused to least recently focused.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('GetClientList %s' % arg_str)
@@ -475,7 +474,7 @@ Returns the name of the window specified by Client active window.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientName %s' % arg_str)
@@ -493,7 +492,7 @@ More details can be found here: http://goo.gl/FHdjl
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientStatesList %s' % arg_str)
@@ -506,7 +505,7 @@ type will either be "desktop", "dock" or "normal".
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientType %s' % arg_str)
@@ -519,7 +518,7 @@ decorations. If the client id is invalid, 0 is returned.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientWidth %s' % arg_str)
@@ -531,7 +530,7 @@ Returns the workspace of the window specified by Client active window.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientWorkspace %s' % arg_str)
@@ -550,7 +549,7 @@ If the client id is invalid, or the client is not visible, -9999 is returned.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientX %s' % arg_str)
@@ -569,7 +568,7 @@ If the client id is invalid, or the client is not visible, -9999 is returned.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('GetClientY %s' % arg_str)
@@ -634,7 +633,7 @@ it is still possible for clients to be floating.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('GetLayout %s' % arg_str)
@@ -675,7 +674,7 @@ Returns the id (the index) of the workspace specified by Workspace.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('GetWorkspaceId %s' % arg_str)
@@ -709,7 +708,7 @@ Returns the first non-visible workspace starting with Prefix. If the current
 workspace starts with Prefix, then the first workspace *after* the current
 workspace starting with Prefix will be returned.
         '''
-        self._assert_arg_type('Prefix', Prefix, [basestring])
+        self._assert_arg_type('Prefix', Prefix, [str])
 
         arg_str = self._gribble_arg_str([Prefix])
         val = self.gribble('GetWorkspacePrefix %s' % arg_str)
@@ -756,7 +755,7 @@ position: left to right and then top to bottom.
 Client may be the window id or a substring that matches a window name.
         '''
         self._assert_arg_type('Head', Head, [int])
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Head, Client])
         val = self.gribble('HeadFocusWithClient %s' % arg_str)
@@ -769,7 +768,7 @@ hidden from panels and pagers.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('HideClientFromPanels %s' % arg_str)
@@ -782,7 +781,7 @@ is already iconified, this command has no effect.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Iconify %s' % arg_str)
@@ -799,7 +798,7 @@ Label will be shown next to the input box.
 This command may be used as a sub-command to pass user provided arguments to
 another command.
         '''
-        self._assert_arg_type('Label', Label, [basestring])
+        self._assert_arg_type('Label', Label, [str])
 
         arg_str = self._gribble_arg_str([Label])
         val = self.gribble('Input %s' % arg_str)
@@ -813,8 +812,8 @@ returns 0. The search is done case insensitively.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
-        self._assert_arg_type('Class', Class, [basestring])
+        self._assert_arg_type('Client', Client, [int, str])
+        self._assert_arg_type('Class', Class, [str])
 
         arg_str = self._gribble_arg_str([Client, Class])
         val = self.gribble('MatchClientClass %s' % arg_str)
@@ -828,8 +827,8 @@ returns 0. The search is done case insensitively.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
-        self._assert_arg_type('Instance', Instance, [basestring])
+        self._assert_arg_type('Client', Client, [int, str])
+        self._assert_arg_type('Instance', Instance, [str])
 
         arg_str = self._gribble_arg_str([Client, Instance])
         val = self.gribble('MatchClientInstance %s' % arg_str)
@@ -843,7 +842,7 @@ dialog window.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('MatchClientIsTransient %s' % arg_str)
@@ -855,7 +854,7 @@ Returns 1 if the window specified by Client is mapped or not.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('MatchClientMapped %s' % arg_str)
@@ -869,8 +868,8 @@ insensitively.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
-        self._assert_arg_type('Name', Name, [basestring])
+        self._assert_arg_type('Client', Client, [int, str])
+        self._assert_arg_type('Name', Name, [str])
 
         arg_str = self._gribble_arg_str([Client, Name])
         val = self.gribble('MatchClientName %s' % arg_str)
@@ -885,8 +884,8 @@ Valid window types are "Normal", "Dock" or "Desktop".
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
-        self._assert_arg_type('Type', Type, [basestring])
+        self._assert_arg_type('Client', Client, [int, str])
+        self._assert_arg_type('Type', Type, [str])
 
         arg_str = self._gribble_arg_str([Client, Type])
         val = self.gribble('MatchClientType %s' % arg_str)
@@ -899,7 +898,7 @@ this command has no effect.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Maximize %s' % arg_str)
@@ -911,7 +910,7 @@ Shows a centered prompt window with the text specified by Text. The message
 will not disappear until it loses focus or when the confirm or cancel key
 is pressed.
         '''
-        self._assert_arg_type('Text', Text, [basestring])
+        self._assert_arg_type('Text', Text, [str])
 
         arg_str = self._gribble_arg_str([Text])
         val = self.gribble('Message %s' % arg_str)
@@ -945,7 +944,7 @@ initiated.
 This is a special command that can only be assigned in Wingo's mouse
 configuration file. Invoking this command in any other way has no effect.
         '''
-        self._assert_arg_type('Direction', Direction, [basestring])
+        self._assert_arg_type('Direction', Direction, [str])
 
         arg_str = self._gribble_arg_str([Direction])
         val = self.gribble('MouseResize %s' % arg_str)
@@ -962,7 +961,7 @@ window's workspace's geometry.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
         self._assert_arg_type('X', X, [float, int])
         self._assert_arg_type('Y', Y, [float, int])
 
@@ -1011,7 +1010,7 @@ window's workspace's geometry.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
         self._assert_arg_type('X', X, [float, int])
         self._assert_arg_type('Y', Y, [float, int])
 
@@ -1060,7 +1059,7 @@ Raises the window specified by Client to the top of its layer.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Raise %s' % arg_str)
@@ -1074,7 +1073,7 @@ be removed if it is empty (i.e., does not contain any windows).
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('RemoveWorkspace %s' % arg_str)
@@ -1088,8 +1087,8 @@ Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
 NewName can only be a string.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
-        self._assert_arg_type('NewName', NewName, [basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
+        self._assert_arg_type('NewName', NewName, [str])
 
         arg_str = self._gribble_arg_str([Workspace, NewName])
         val = self.gribble('RenameWorkspace %s' % arg_str)
@@ -1106,7 +1105,7 @@ window's workspace's geometry.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
         self._assert_arg_type('Width', Width, [float, int])
         self._assert_arg_type('Height', Height, [float, int])
 
@@ -1129,7 +1128,7 @@ after you've made changes to its configuration.
 Executes a script in $XDG_CONFIG_HOME/wingo/scripts. The command
 may include arguments.
         '''
-        self._assert_arg_type('Command', Command, [basestring])
+        self._assert_arg_type('Command', Command, [str])
 
         arg_str = self._gribble_arg_str([Command])
         val = self.gribble('Script %s' % arg_str)
@@ -1139,13 +1138,15 @@ may include arguments.
         '''
 Returns the path to a script's configuration file.
         '''
-        self._assert_arg_type('ScriptName', ScriptName, [basestring])
+        self._assert_arg_type('ScriptName', ScriptName, [str])
 
         arg_str = self._gribble_arg_str([ScriptName])
         val = self.gribble('ScriptConfig %s' % arg_str)
         return self._from_str('ScriptConfig', val)
 
-    def SelectClient(self, TabCompletion, OnlyActiveWorkspace, OnlyVisible, ShowIconified):
+    def SelectClient(
+        self, TabCompletion, OnlyActiveWorkspace, OnlyVisible, ShowIconified,
+    ):
         '''
 Shows a centered prompt window with a list of clients satisfying the arguments
 provided.
@@ -1168,12 +1169,16 @@ separated substring matching strings.
 This command may be used as a sub-command to pass a particular client to
 another command.
         '''
-        self._assert_arg_type('TabCompletion', TabCompletion, [basestring])
-        self._assert_arg_type('OnlyActiveWorkspace', OnlyActiveWorkspace, [basestring])
-        self._assert_arg_type('OnlyVisible', OnlyVisible, [basestring])
-        self._assert_arg_type('ShowIconified', ShowIconified, [basestring])
+        self._assert_arg_type('TabCompletion', TabCompletion, [str])
+        self._assert_arg_type(
+            'OnlyActiveWorkspace', OnlyActiveWorkspace, [str],
+        )
+        self._assert_arg_type('OnlyVisible', OnlyVisible, [str])
+        self._assert_arg_type('ShowIconified', ShowIconified, [str])
 
-        arg_str = self._gribble_arg_str([TabCompletion, OnlyActiveWorkspace, OnlyVisible, ShowIconified])
+        arg_str = self._gribble_arg_str([
+            TabCompletion, OnlyActiveWorkspace, OnlyVisible, ShowIconified,
+        ])
         val = self.gribble('SelectClient %s' % arg_str)
         return self._from_str('SelectClient', val)
 
@@ -1190,7 +1195,7 @@ separated substring matching strings.
 This command may be used as a sub-command to pass a particular workspace to
 another command.
         '''
-        self._assert_arg_type('TabCompletion', TabCompletion, [basestring])
+        self._assert_arg_type('TabCompletion', TabCompletion, [str])
 
         arg_str = self._gribble_arg_str([TabCompletion])
         val = self.gribble('SelectWorkspace %s' % arg_str)
@@ -1207,8 +1212,8 @@ Note that this command has no effect if the workspace is not visible.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
-        self._assert_arg_type('Name', Name, [basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
+        self._assert_arg_type('Name', Name, [str])
 
         arg_str = self._gribble_arg_str([Workspace, Name])
         val = self.gribble('SetLayout %s' % arg_str)
@@ -1227,7 +1232,7 @@ Client may be the window id or a substring that matches a window name.
 Opacity should be a float in the range 0.0 to 1.0, inclusive, where 0.0 is
 completely transparent and 1.0 is completely opaque.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
         self._assert_arg_type('Opacity', Opacity, [float])
 
         arg_str = self._gribble_arg_str([Client, Opacity])
@@ -1239,7 +1244,7 @@ completely transparent and 1.0 is completely opaque.
 Attempts to execute the shell command specified by Command. If an error occurs,
 it will be logged to Wingo's stderr.
         '''
-        self._assert_arg_type('Command', Command, [basestring])
+        self._assert_arg_type('Command', Command, [str])
 
         arg_str = self._gribble_arg_str([Command])
         val = self.gribble('Shell %s' % arg_str)
@@ -1252,7 +1257,7 @@ shown on panels and pagers.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('ShowClientInPanels %s' % arg_str)
@@ -1268,8 +1273,8 @@ window.
 
 Tag names may only contain the following characters: [-a-zA-Z0-9_].
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
-        self._assert_arg_type('Name', Name, [basestring])
+        self._assert_arg_type('Client', Client, [int, str])
+        self._assert_arg_type('Name', Name, [str])
 
         arg_str = self._gribble_arg_str([Client, Name])
         val = self.gribble('TagGet %s' % arg_str)
@@ -1284,9 +1289,9 @@ Or, it may be zero and the property will be set on the root window.
 
 Tag names may only contain the following characters: [-a-zA-Z0-9_].
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
-        self._assert_arg_type('Name', Name, [basestring])
-        self._assert_arg_type('Value', Value, [basestring])
+        self._assert_arg_type('Client', Client, [int, str])
+        self._assert_arg_type('Name', Name, [str])
+        self._assert_arg_type('Value', Value, [str])
 
         arg_str = self._gribble_arg_str([Client, Name, Value])
         val = self.gribble('TagSet %s' % arg_str)
@@ -1299,7 +1304,7 @@ floating layout. A window forced into the floating layout CANNOT be tiled.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('ToggleFloating %s' % arg_str)
@@ -1312,7 +1317,7 @@ Client.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('ToggleIconify %s' % arg_str)
@@ -1324,7 +1329,7 @@ Maximizes or restores the window specified by Client.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('ToggleMaximize %s' % arg_str)
@@ -1338,7 +1343,7 @@ clients.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('ToggleStackAbove %s' % arg_str)
@@ -1352,7 +1357,7 @@ clients.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('ToggleStackBelow %s' % arg_str)
@@ -1366,20 +1371,11 @@ to any particular workspace.)
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('ToggleSticky %s' % arg_str)
         return self._from_str('ToggleSticky', val)
-
-    def True(self):
-        '''
-Always returns 1.
-        '''
-
-        arg_str = self._gribble_arg_str([])
-        val = self.gribble('True %s' % arg_str)
-        return self._from_str('True', val)
 
     def Unfloat(self, Client):
         '''
@@ -1388,7 +1384,7 @@ this command has no effect.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Unfloat %s' % arg_str)
@@ -1401,7 +1397,7 @@ this command has no effect.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Client])
         val = self.gribble('Unmaximize %s' % arg_str)
@@ -1412,7 +1408,7 @@ Client may be the window id or a substring that matches a window name.
 Executes a series of Wingo commands specified by Commands. If an error occurs
 while executing the command, it will be shown in a popup message.
         '''
-        self._assert_arg_type('Commands', Commands, [basestring])
+        self._assert_arg_type('Commands', Commands, [str])
 
         arg_str = self._gribble_arg_str([Commands])
         val = self.gribble('WingoExec %s' % arg_str)
@@ -1422,7 +1418,7 @@ while executing the command, it will be shown in a popup message.
         '''
 Shows the usage information for a particular command specified by CommandName.
         '''
-        self._assert_arg_type('CommandName', CommandName, [basestring])
+        self._assert_arg_type('CommandName', CommandName, [str])
 
         arg_str = self._gribble_arg_str([CommandName])
         val = self.gribble('WingoHelp %s' % arg_str)
@@ -1435,7 +1431,7 @@ Sets the current workspace to the one specified by Workspace.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('Workspace %s' % arg_str)
@@ -1453,7 +1449,7 @@ two visible workspaces.)
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('WorkspaceGreedy %s' % arg_str)
@@ -1473,8 +1469,8 @@ name.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace, Client])
         val = self.gribble('WorkspaceGreedyWithClient %s' % arg_str)
@@ -1491,7 +1487,7 @@ to right and then top to bottom.
 Workspace may be a workspace index (integer) starting at 0, or a workspace
 name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace])
         val = self.gribble('WorkspaceHead %s' % arg_str)
@@ -1506,8 +1502,8 @@ name.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace, Client])
         val = self.gribble('WorkspaceSendClient %s' % arg_str)
@@ -1525,7 +1521,7 @@ Head indexing starts at 0. Heads are ordered by their physical position: left
 to right and then top to bottom.
         '''
         self._assert_arg_type('Head', Head, [int])
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
 
         arg_str = self._gribble_arg_str([Head, Workspace])
         val = self.gribble('WorkspaceToHead %s' % arg_str)
@@ -1541,10 +1537,9 @@ name.
 
 Client may be the window id or a substring that matches a window name.
         '''
-        self._assert_arg_type('Workspace', Workspace, [int, basestring])
-        self._assert_arg_type('Client', Client, [int, basestring])
+        self._assert_arg_type('Workspace', Workspace, [int, str])
+        self._assert_arg_type('Client', Client, [int, str])
 
         arg_str = self._gribble_arg_str([Workspace, Client])
         val = self.gribble('WorkspaceWithClient %s' % arg_str)
         return self._from_str('WorkspaceWithClient', val)
-

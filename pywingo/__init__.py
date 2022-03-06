@@ -4,7 +4,7 @@ Module pywingo provides a high level interface to the
 includes running commands to manage your windows and workspaces, and
 responding to events sent by Wingo.
 """
-import ConfigParser
+from configparser import ConfigParser
 import json
 import os
 import os.path
@@ -78,7 +78,7 @@ class WingoUtil(WingoCommands):
         physical position: left to right and then top to bottom.
         '''
         spaces = []
-        for i in xrange(self.GetNumHeads()):
+        for i in range(self.GetNumHeads()):
             spaces.append(self.GetHeadWorkspace(i))
         return spaces
 
@@ -105,12 +105,15 @@ class WingoUtil(WingoCommands):
         fname = os.path.basename(sys.argv[0])
         cfg_path = self.ScriptConfig(fname)
         if not os.access(cfg_path, os.R_OK):
-            print >> sys.stderr, "Could not read config file for %s" % fname
-            print >> sys.stderr, "Please make sure there is a config file " \
-                                 "in ~/.config/wingo/scripts/%s" % fname
+            print("Could not read config file for %s" % fname, file=sys.stderr)
+            print(
+                "Please make sure there is a config file "
+                "in ~/.config/wingo/scripts/%s" % fname,
+                file=sys.stderr,
+            )
             sys.exit(1)
 
-        cfg = ConfigParser.RawConfigParser()
+        cfg = ConfigParser()
         cfg.read(cfg_path)
         return cfg
 
@@ -161,7 +164,7 @@ class Wingo(WingoUtil):
             data = self.__sock.recv(4096)
             if not data:
                 raise Disconnected
-            self.__buf += data
+            self.__buf += data.decode('utf-8')
 
         sentinel = self.__buf.index(chr(0))
         payload = self.__buf[0:sentinel][:]
@@ -177,7 +180,7 @@ class Wingo(WingoUtil):
             data = self.__evsock.recv(4096)
             if not data:
                 raise Disconnected
-            self.__evbuf += data
+            self.__evbuf += data.decode('utf-8')
 
         sentinel = self.__evbuf.index(chr(0))
         payload = self.__evbuf[0:sentinel][:]
@@ -199,11 +202,12 @@ class Wingo(WingoUtil):
             return self.__recv()
 
     def __send_cmd(self, cmd):
+        assert isinstance(cmd, str)
         if self.__sock is None:
             self.__reconnect()
         try:
-            self.__sock.send('%s%s' % (cmd, chr(0)))
-        except:
+            self.__sock.send(('%s%s' % (cmd, chr(0))).encode('utf-8'))
+        except Exception:
             raise Disconnected
 
     def _assert_arg_type(self, name, val, types):
@@ -217,7 +221,7 @@ class Wingo(WingoUtil):
         for v in vals:
             if isinstance(v, int) or isinstance(v, float):
                 args.append(repr(v))
-            elif isinstance(v, basestring):
+            elif isinstance(v, str):
                 args.append('`%s`' % self._escape_str(v))
             else:
                 assert False, 'bug'
@@ -234,8 +238,10 @@ class Wingo(WingoUtil):
             trimmed = s.strip()
             if len(trimmed) == 0:
                 return []
-            return map(lambda item: self._primitive_from_str(cmd_name, item),
-                       trimmed.split('\n'))
+            return list(map(
+                lambda item: self._primitive_from_str(cmd_name, item),
+                trimmed.split('\n'),
+            ))
 
         if cmd_name in _string_cmds:
             return s
@@ -300,9 +306,11 @@ class Wingo(WingoUtil):
                 ev_name = str(j['EventName'])
                 key = '_new_%s' % ev_name
                 if key not in events.__dict__:
-                    print >> sys.stderr, \
-                        'Event "%s" is not defined in pywingo. ' \
-                        'Time to update!' % ev_name
+                    print(
+                        'Event "%s" is not defined in pywingo. '
+                        'Time to update!' % ev_name,
+                        file=sys.stderr,
+                    )
                     continue
                 ev = events.__dict__[key](j)
 
@@ -337,14 +345,15 @@ class Wingo(WingoUtil):
 
 def _socket_filepath(display=None):
     if display is not None:
-        rundir = os.getenv('XDG_RUNTIME_DIR').strip()
+        rundir = os.getenv('XDG_RUNTIME_DIR').decode('utf-8').strip()
         if len(rundir) == 0:
             rundir = tempfile.gettempdir()
         return os.path.join(rundir, 'wingo', display)
 
     try:
-        fp = subprocess.check_output(['wingo', '--show-socket'],
-                                     stderr=subprocess.STDOUT)
-        return fp.strip()
-    except subprocess.CalledProcessError, e:
+        fp = subprocess.check_output(
+            ['wingo', '--show-socket'], stderr=subprocess.STDOUT,
+        )
+        return fp.decode('utf-8').strip()
+    except subprocess.CalledProcessError as e:
         raise WingoError(e.output)
