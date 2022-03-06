@@ -1,6 +1,7 @@
 .*.swp
 *.egg-info
 MANIFEST
+/build
 dist
 doc
 bin
